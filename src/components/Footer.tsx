@@ -1,19 +1,16 @@
+import { profile } from "../data/portfolio";
 
-//import { Twitter, Youtube, Facebook } from 'lucide-react';
-
-
-
-const Footer = () => {
-    return (
-        <footer className="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
-            <aside>
-                <p>Copyright © {new Date().getFullYear()} - All right reserved
-                    <span>
-                        Elvys<span className="text-accent">DEV</span>
-                    </span></p>
-            </aside>
-        </footer>
-    );
-}
+const Footer = () => (
+    <footer className="relative z-10 bg-secondary/30 border-t border-accent-glow/30 py-8 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="font-mono text-xs text-gray-500">
+                © {new Date().getFullYear()} — {profile.fullName}
+            </p>
+            <p className="font-mono text-xs text-gray-600">
+                Développeur Web Full Stack — {profile.interests.slice(0, 2).join(" · ")}
+            </p>
+        </div>
+    </footer>
+);
 
 export default Footer;

@@ -1,128 +1,173 @@
-import Title from './title';
-import imgCSS from "../assets/techno/css.png";
-import imgJS from "../assets/techno/js.png";
-import imgREACT from "../assets/techno/react.png";
-import imgHTML from "../assets/techno/html.png";
-import imgNEXT from "../assets/techno/next-js.webp";
-import imgNODE from "../assets/techno/node-js.png";
-import imgTYPE from "../assets/techno/typescript.svg";
-import imgTAILWIND from "../assets/techno/tailwind.png";
-import imgPRISMA from "../assets/techno/prisma.webp";
+import { motion } from "framer-motion";
+import { experiences, education, type Experience } from "../data/portfolio";
+import { fadeUp, stagger, viewportOnce } from "../lib/motion";
+import SectionHeading from "./SectionHeading";
 
-import google from "../assets/companies/google.png";
-import meta from "../assets/companies/meta.webp";
-import amazon from "../assets/companies/amazon.png";
-import caisse from "../assets/companies/Caisse mutuelle.webp";
+type TimelineItemProps = {
+    period: string;
+    title: string;
+    subtitle: string;
+    location: string;
+    items?: string[];
+    image?: string;
+    index: number;
+};
 
+const TimelineItem = ({
+    period,
+    title,
+    subtitle,
+    location,
+    items,
+    image,
+    index,
+}: TimelineItemProps) => (
+    <motion.div
+        className="relative pl-8"
+        variants={{
+            hidden: { opacity: 0, x: -30 },
+            visible: {
+                opacity: 1,
+                x: 0,
+                transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 },
+            },
+        }}
+    >
+        <motion.div
+            className="absolute left-[7px] top-6 bottom-0 w-px bg-gradient-to-b from-accent-glow/50 to-transparent"
+            initial={{ scaleY: 0, originY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+        />
+        <motion.div
+            className="absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full border-2 border-accent bg-primary"
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.3, delay: index * 0.1, type: "spring", stiffness: 300 }}
+            whileHover={{ scale: 1.5, boxShadow: "0 0 10px rgba(77,144,214,0.8)" }}
+        />
 
-
-
-const skills = [
-    { id: 1, name: "HTML", image: imgHTML },
-    { id: 2, name: "CSS", image: imgCSS },
-    { id: 3, name: "JavaScript", image: imgJS },
-    { id: 4, name: "React", image: imgREACT },
-    { id: 5, name: "Nodejs", image: imgNODE },
-    { id: 6, name: "Tailwind CSS", image: imgTAILWIND },
-    { id: 7, name: "TypeScript", image: imgTYPE },
-    { id: 8, name: "Nextjs", image: imgNEXT },
-    { id: 9, name: "Prisma", image: imgPRISMA }
-    ,
-];
-
-const experiences = [
-    {
-        id: 1,
-        role: "Software Engineer",
-        company: "Google",
-        period: "Sep 2022 - Présent",
-        description: [
-            "Développement de nouvelles fonctionnalités pour Google Maps.",
-            "Optimisation des performances de l'application.",
-        ],
-        image: google,
-    },
-    {
-        id: 2,
-        role: "Fullstack Developer",
-        company: "Meta",
-        period: "Jan 2021 - Août 2022",
-        description: [
-            "Création d'une plateforme interne de collaboration pour les équipes.",
-            "Mise en place d'une architecture scalable et optimisée.",
-        ],
-        image: meta,
-    },
-    {
-        id: 3,
-        role: "Frontend Developer",
-        company: "Amazon",
-        period: "Mai 2019 - Déc 2020",
-        description: [
-            "Développement d'une interface utilisateur pour Amazon Web Services.",
-            "Implémentation des tests unitaires et E2E.",
-        ],
-        image: amazon,
-    },
-    {
-        id: 4,
-        role: "ingenieur réseau",
-        company: "Caisse Mutuelle B-F",
-        period: "1er Sep 2025 - 1er Octobre 2025",
-        description: [
-            "Maintenance des équipements réseau et des serveurs de l'entreprise.",
-            "Assistance aux utilisateurs pour les problèmes liés au réseau et aux systèmes.",
-        ],
-        image: caisse,
-    },
-];
-
-const Experiences = () => {
-    return (
-        <div className="p-5 md:px-[15%]" id="Experiences">
-            <Title title="Mes expériences" />
-            <div className="flex flex-col-reverse  md:flex-row items-center justify-center">
-                <div className="flex flex-wrap justify-center gap-4 items-center md:w-1/3 mt-4 md:mt-0">
-                    {skills.map((skill) => (
-                        <div key={skill.id} className="flex justify-center flex-col ">
-                            <div className="w-24 h-24 p-2 rounded-full border-2 border-accent">
-                                <img src={skill.image} alt={skill.name} className="w-full h-full object-cover rounded-full " />
-                            </div>
-
-                            <span className="mt-2 text-sm">{skill.name}</span>
-                        </div>
+        <div className="mb-8 group">
+            <div className="flex items-center gap-3 mb-2">
+                {image && (
+                    <img
+                        src={image}
+                        alt={subtitle}
+                        className="w-8 h-8 rounded object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
+                )}
+                <span className="font-mono text-xs text-accent tracking-wide">{period}</span>
+            </div>
+            <h4 className="text-white font-semibold mt-1 mb-0.5 group-hover:text-accent-light transition-colors">
+                {title}
+            </h4>
+            <p className="text-accent-light text-sm mb-0.5">{subtitle}</p>
+            <p className="text-gray-500 text-xs mb-3">{location}</p>
+            {items && items.length > 0 && (
+                <ul className="space-y-1">
+                    {items.map((item, i) => (
+                        <motion.li
+                            key={item}
+                            className="text-gray-400 text-sm flex gap-2"
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={viewportOnce}
+                            transition={{ delay: index * 0.1 + i * 0.05 + 0.3 }}
+                        >
+                            <span className="text-accent flex-shrink-0 mt-0.5">▸</span>
+                            {item}
+                        </motion.li>
                     ))}
+                </ul>
+            )}
+        </div>
+    </motion.div>
+);
+
+const Experiences = () => (
+    <section id="experiences" className="relative z-10 py-12 md:py-24 px-4 md:px-6 bg-secondary/20">
+        <div className="max-w-5xl mx-auto">
+            <SectionHeading title="Parcours" />
+
+            <div className="grid md:grid-cols-2 gap-12">
+                <div>
+                    <motion.h3
+                        className="text-lg font-bold text-gray-200 mb-8 flex items-center gap-3"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={viewportOnce}
+                    >
+                        <motion.span
+                            className="h-px bg-accent"
+                            initial={{ width: 0 }}
+                            whileInView={{ width: 24 }}
+                            viewport={viewportOnce}
+                            transition={{ duration: 0.5 }}
+                        />
+                        Expériences
+                    </motion.h3>
+                    <motion.div
+                        variants={stagger}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={viewportOnce}
+                    >
+                        {experiences.map((exp: Experience) => (
+                            <TimelineItem
+                                key={exp.id}
+                                period={exp.period}
+                                title={exp.title}
+                                subtitle={exp.company}
+                                location={exp.location}
+                                items={exp.items}
+                                image={exp.image}
+                                index={exp.id - 1}
+                            />
+                        ))}
+                    </motion.div>
                 </div>
-                <div className="md:ml-4 flex flex-col space-y-4">
-                    {experiences.map((experience) => (
-                        <div key={experience.id} className="flex flex-col bg-base-200 p-5 rounded-xl  shadow-lg">
-                            <div className=" flex items-center">
-                                <img src={experience.image} alt={experience.company} className="object-cover h-10 w-10 " />
-                                <div className="ml-4 ">
-                                    <h1 className="text-xl text-accent font-bold">
-                                        {experience.role} , {experience.company}
 
-                                    </h1>
-                                    <span className="text-sm">{experience.period}</span>
-
-                                </div>
-
-
-                            </div>
-                            <ul className="list-disc ml-16 mt-2 ">
-                                {experience.description.map((desc, index) => (
-                                    <li key={index} className="">
-                                        {desc}
-                                    </li>
-                                ))}
-                            </ul>
-
-                        </div>
-                    ))}
+                <div>
+                    <motion.h3
+                        className="text-lg font-bold text-gray-200 mb-8 flex items-center gap-3"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={viewportOnce}
+                    >
+                        <motion.span
+                            className="h-px bg-accent"
+                            initial={{ width: 0 }}
+                            whileInView={{ width: 24 }}
+                            viewport={viewportOnce}
+                            transition={{ duration: 0.5 }}
+                        />
+                        Formation
+                    </motion.h3>
+                    <motion.div
+                        variants={stagger}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={viewportOnce}
+                    >
+                        {education.map((edu) => (
+                            <TimelineItem
+                                key={edu.id}
+                                period={edu.period}
+                                title={edu.title}
+                                subtitle={edu.school}
+                                location={edu.location}
+                                index={edu.id - 1}
+                            />
+                        ))}
+                    </motion.div>
                 </div>
             </div>
         </div>
-    );
-};
+    </section>
+);
 
 export default Experiences;
