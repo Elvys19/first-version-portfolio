@@ -13,9 +13,6 @@ import imgJAVA from "../assets/techno/java.svg";
 import imgDART from "../assets/techno/dart.svg";
 import imgPOSTGRES from "../assets/techno/postgresql.svg";
 
-import google from "../assets/companies/google.png";
-import meta from "../assets/companies/meta.webp";
-import amazon from "../assets/companies/amazon.png";
 import caisse from "../assets/companies/Caisse mutuelle.webp";
 
 import proj1 from "../assets/projects/1.webp";
@@ -40,6 +37,7 @@ export const profile = {
     languages: [
         { name: "Français", level: "Langue maternelle" },
         { name: "Anglais", level: "Technique" },
+        { name: "Mandarin", level: "Notions" },
     ],
     interests: [
         "React & Next.js",
@@ -107,49 +105,25 @@ export type Experience = {
 export const experiences: Experience[] = [
     {
         id: 1,
-        period: "Sep 2022 — Présent",
-        title: "Software Engineer",
-        company: "Google",
-        location: "Mountain View, CA",
-        image: google,
+        period: "Mars 2026 — Juin 2026",
+        title: "Stagiaire",
+        company: "SOFITEX",
+        location: "Bobo-Dioulasso, Burkina Faso",
+        image: "",
         items: [
-            "Développement de nouvelles fonctionnalités pour Google Maps.",
-            "Optimisation des performances de l'application.",
+            "Stage au sein de SOFITEX à Bobo-Dioulasso.",
+            "Mise en pratique des compétences en systèmes d'information et en informatique.",
         ],
     },
     {
         id: 2,
-        period: "Jan 2021 — Août 2022",
-        title: "Fullstack Developer",
-        company: "Meta",
-        location: "Menlo Park, CA",
-        image: meta,
-        items: [
-            "Création d'une plateforme interne de collaboration pour les équipes.",
-            "Mise en place d'une architecture scalable et optimisée.",
-        ],
-    },
-    {
-        id: 3,
-        period: "Mai 2019 — Déc 2020",
-        title: "Frontend Developer",
-        company: "Amazon",
-        location: "Seattle, WA",
-        image: amazon,
-        items: [
-            "Développement d'une interface utilisateur pour Amazon Web Services.",
-            "Implémentation des tests unitaires et E2E.",
-        ],
-    },
-    {
-        id: 4,
-        period: "Sep 2025 — Oct 2025",
-        title: "Ingénieur Réseau",
-        company: "Caisse Mutuelle B-F",
-        location: "Bobo-Dioulasso, BF",
+        period: "Sept. 2025 — Oct. 2025",
+        title: "Stagiaire",
+        company: "Caisse Mutuelle Burkina Faso",
+        location: "Bobo-Dioulasso, Hauts-Bassins, Burkina Faso",
         image: caisse,
         items: [
-            "Maintenance des équipements réseau et des serveurs de l'entreprise.",
+            "Maintenance des équipements informatiques et réseau de l'entreprise.",
             "Assistance aux utilisateurs pour les problèmes liés au réseau et aux systèmes.",
         ],
     },
@@ -166,17 +140,31 @@ export type Education = {
 export const education: Education[] = [
     {
         id: 1,
-        period: "10.2023 — Présent",
-        title: "Master — Ingénierie des Systèmes d'Information",
+        period: "Sept. 2022 — Présent",
+        title: "Licence — Ingénierie des Systèmes d'Information",
         school: "École Supérieure d'Informatique",
-        location: "Burkina Faso",
+        location: "Bobo-Dioulasso, Burkina Faso",
     },
     {
         id: 2,
-        period: "2019 — 2023",
-        title: "Licence — Génie Logiciel",
-        school: "École Supérieure d'Informatique",
-        location: "Burkina Faso",
+        period: "Sept. 2021 — Juil. 2022",
+        title: "Baccalauréat",
+        school: "Collège de Tounouma Garçon",
+        location: "Bobo-Dioulasso, Burkina Faso",
+    },
+    {
+        id: 3,
+        period: "Sept. 2018 — Juil. 2019",
+        title: "BEPC",
+        school: "Collège de Tounouma Garçon",
+        location: "Bobo-Dioulasso, Burkina Faso",
+    },
+    {
+        id: 4,
+        period: "Sept. 2014 — Juil. 2015",
+        title: "CEP",
+        school: "Complexe scolaire Jean Paul II",
+        location: "Bobo-Dioulasso, Burkina Faso",
     },
 ];
 
@@ -496,36 +484,110 @@ export const projects: Project[] = [
     },
 ];
 
-export const certificates = [
+export type Certificate = {
+    id: number;
+    name: string;
+    issuer: string;
+    date: string;
+    description: string;
+    link: string;
+    file?: string;
+    color: string;
+};
+
+export const certificates: Certificate[] = [
     {
         id: 1,
         name: "Promptly pour les débutants : Construire une application d'IA générative",
         issuer: "Coursera",
-        date: "2025",
+        date: "Oct. 2025",
         description:
             "Découverte de l'IA générative et construction d'une application concrète à partir de prompts.",
         link: "https://www.coursera.org/account/accomplishments/records/GMXFP04OWKFP",
+        file: "/certificates/promptly.jpg",
         color: "#0056D2",
     },
     {
         id: 2,
-        name: "ChatGPT Terrain de jeu pour les débutants : Introduction à l'IA",
+        name: "ChatGPT Terrain de jeu pour les débutants : Introduction à l'IA NLP",
         issuer: "Coursera",
-        date: "2025",
+        date: "Sept. 2025",
         description:
             "Fondamentaux de l'intelligence artificielle et du prompt engineering appliqués à ChatGPT.",
         link: "https://www.coursera.org/account/accomplishments/records/WE1FRTHQED7G",
+        file: "/certificates/chatgpt.jpg",
         color: "#10a37f",
     },
     {
         id: 3,
         name: "La narration cinématographique simplifiée : Maîtriser Lumen5 IA",
         issuer: "Coursera",
-        date: "2025",
+        date: "Sept. 2025",
         description:
             "Création de vidéos et narration visuelle assistées par l'IA avec Lumen5.",
         link: "https://www.coursera.org/account/accomplishments/records/TKWFWGMHKT4M",
+        file: "/certificates/lumen5.jpg",
         color: "#EA4335",
+    },
+    {
+        id: 4,
+        name: "OpenAI pour les débutants : Les assistants IA pour les gestionnaires de projet",
+        issuer: "Coursera",
+        date: "Sept. 2025",
+        description:
+            "Utilisation des assistants IA d'OpenAI pour la gestion et l'organisation de projets.",
+        link: "",
+        color: "#412991",
+    },
+    {
+        id: 5,
+        name: "Prompt Engineering Generative AI for Marketing & Advertising",
+        issuer: "Coursera",
+        date: "Sept. 2025",
+        description:
+            "Techniques de prompt engineering appliquées au marketing et à la publicité générative.",
+        link: "",
+        color: "#ff6d00",
+    },
+    {
+        id: 6,
+        name: "Responsive Web Design",
+        issuer: "freeCodeCamp",
+        date: "Avr. 2025",
+        description:
+            "Conception de pages web adaptatives avec HTML, CSS, Flexbox et Grid.",
+        link: "",
+        color: "#0a0a23",
+    },
+    {
+        id: 7,
+        name: "Comprendre le Web",
+        issuer: "OpenClassrooms",
+        date: "Sept. 2024",
+        description:
+            "Fondamentaux du Web : histoire, langages, frameworks et rôle des développeurs.",
+        link: "",
+        color: "#7451eb",
+    },
+    {
+        id: 8,
+        name: "Concevez votre réseau TCP/IP",
+        issuer: "OpenClassrooms",
+        date: "Avr. 2024",
+        description:
+            "Architecture réseau, adressage IP, routage, DHCP et DNS avec Cisco Packet Tracer.",
+        link: "",
+        color: "#2f8d46",
+    },
+    {
+        id: 9,
+        name: "Intelligence Artificielle Au Quotidien",
+        issuer: "ODC Clubs",
+        date: "—",
+        description:
+            "Initiation aux usages concrets de l'intelligence artificielle au quotidien.",
+        link: "",
+        color: "#00b8d9",
     },
 ];
 

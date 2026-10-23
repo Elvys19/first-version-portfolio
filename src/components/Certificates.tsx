@@ -1,18 +1,8 @@
 import { motion } from "framer-motion";
-import { Award, Calendar, ExternalLink } from "lucide-react";
-import { certificates } from "../data/portfolio";
+import { Award, Calendar, Download, ExternalLink } from "lucide-react";
+import { certificates, type Certificate } from "../data/portfolio";
 import { fadeUp, viewportOnce } from "../lib/motion";
 import SectionHeading from "./SectionHeading";
-
-type Certificate = {
-    id: number;
-    name: string;
-    issuer: string;
-    date: string;
-    description: string;
-    link: string;
-    color: string;
-};
 
 const CertificateCard = ({ cert, index }: { cert: Certificate; index: number }) => (
     <motion.div
@@ -60,18 +50,31 @@ const CertificateCard = ({ cert, index }: { cert: Certificate; index: number }) 
             )}
         </div>
 
-        {cert.link && cert.link !== "#" && (
-            <motion.a
-                href={cert.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs font-mono text-accent border border-accent/30 bg-accent/5 rounded-lg px-3 py-2 w-full justify-center hover:bg-accent/15 transition-colors mt-auto"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-            >
-                <ExternalLink size={10} /> Voir le certificat
-            </motion.a>
-        )}
+        <div className="flex gap-2 mt-auto">
+            {cert.link && cert.link !== "#" && (
+                <motion.a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-1 items-center gap-2 text-xs font-mono text-accent border border-accent/30 bg-accent/5 rounded-lg px-3 py-2 justify-center hover:bg-accent/15 transition-colors"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.97 }}
+                >
+                    <ExternalLink size={10} /> Voir
+                </motion.a>
+            )}
+            {cert.file && (
+                <motion.a
+                    href={cert.file}
+                    download
+                    className="flex flex-1 items-center gap-2 text-xs font-mono text-gray-300 border border-white/15 bg-white/5 rounded-lg px-3 py-2 justify-center hover:bg-white/10 transition-colors"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.97 }}
+                >
+                    <Download size={10} /> Télécharger
+                </motion.a>
+            )}
+        </div>
     </motion.div>
 );
 
