@@ -81,7 +81,7 @@ const About = () => {
                             <p className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">
                                 Langues
                             </p>
-                            <div className="flex gap-6">
+                            <div className="flex flex-wrap gap-x-6 gap-y-4">
                                 {profile.languages.map((lang, i) => (
                                     <motion.div
                                         key={lang.name}
